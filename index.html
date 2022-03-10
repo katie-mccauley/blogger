@@ -2,6 +2,23 @@
 <html lang="en">
 
 <head>
+  <style>
+    body.debug .container,
+    body.debug .container-fluid {
+      outline: 2px double blue;
+      outline-offset: -2px;
+    }
+
+    body.debug .row {
+      outline: 2px dashed red;
+      outline-offset: -2px;
+    }
+
+    body.debug [class*="col-"] {
+      outline: 2px dotted forestgreen;
+      outline-offset: -3px;
+    }
+  </style>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -11,7 +28,7 @@
   </title>
 </head>
 
-<body>
+<body class="debug">
   <noscript>
     <strong>We're sorry but blogger doesn't work properly without JavaScript
       enabled. Please enable it to continue.</strong>
