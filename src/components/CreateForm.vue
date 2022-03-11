@@ -1,7 +1,6 @@
 
 <template>
   <form
-    @submit.prevent="createPost"
     class="row bg-grey darken-20 justify-content-center elevation-3 p-2 m-5"
   >
     <div class="col-md-4 mb-2">
@@ -39,7 +38,14 @@
     </div>
 
     <div class="col-12 d-flex justify-content-end">
-      <button class="btn btn-primary">create</button>
+      <button
+        v-if="!state.editable.id"
+        @click="createPost"
+        class="btn btn-primary"
+      >
+        create
+      </button>
+      <button v-else @click="editPost" class="btn btn-primary">edit</button>
     </div>
   </form>
 </template>
@@ -50,6 +56,7 @@ import { reactive } from "@vue/reactivity";
 import { logger } from "../utils/Logger";
 import { postsService } from "../services/PostsService";
 import { useRouter } from "vue-router";
+import { Modal } from "bootstrap";
 export default {
   setup() {
     const router = useRouter();
@@ -61,7 +68,18 @@ export default {
       async createPost() {
         try {
           await postsService.createPost(state.editable);
+          state.editable = {};
           router.push({ name: "Home" });
+        } catch (error) {
+          logger.error(error);
+        }
+      },
+      async editPost() {
+        try {
+          await postsService.editPost(state.editable);
+          Modal.getOrCreateInstance(
+            document.getElementById("form-modal")
+          ).hide();
         } catch (error) {
           logger.error(error);
         }

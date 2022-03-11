@@ -10,8 +10,18 @@
     <div class="row">
       <div class="col-4" v-for="p in posts" :key="p.id">
         <Post :post="p" />
+        <i
+          v-if="account.id == profile.id"
+          data-bs-toggle="modal"
+          data-bs-target="#edit-post"
+          class="mdi mdi-pencil selectable"
+        ></i>
       </div>
     </div>
+    <Modal id="edit-post">
+      <template #title>edit post </template>
+      <template #body><CreateForm /></template>
+    </Modal>
   </div>
 </template>
 

@@ -14,6 +14,9 @@
         >
           <p>{{ activePosts.creator?.name }}</p>
         </div>
+        <div>
+          <Comments />
+        </div>
       </template>
     </Modal>
   </main>

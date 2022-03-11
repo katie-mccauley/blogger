@@ -20,6 +20,11 @@ class PostsService {
     logger.log(res.data)
     AppState.posts.unshift(res.data)
   }
+
+  async editPost(editData) {
+    const res = await api.put('api/blogs/', editData)
+    logger.log(res.data)
+  }
 }
 
 export const postsService = new PostsService()
