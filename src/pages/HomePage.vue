@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="home flex-grow-1 d-flex flex-column text-light">
+    <div class="text-light">
       <div class="row px-5 mb-5 pb-5">
         <div v-for="p in posts" :key="p.id" class="col-md-6">
           <Post :post="p" />

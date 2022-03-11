@@ -6,6 +6,7 @@
         <p>{{ profile.email }}</p>
       </div>
     </div>
+    <CreateForm v-if="account.id == profile.id" />
     <div class="row">
       <div class="col-4" v-for="p in posts" :key="p.id">
         <Post :post="p" />
@@ -38,6 +39,7 @@ export default {
     return {
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
+      account: computed(() => AppState.account),
     };
   },
 };
